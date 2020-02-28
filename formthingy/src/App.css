@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Nunito+Sans&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,62 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.user-form form{
+  font-family: 'Montserrat', sans-serif;
+  padding: 1%;
+  display: flex;
+  color: white;
+  background-color: REBECCAPURPLE;
+  border-radius: 25px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  width: 20%;
+  margin: 0 auto;
+}
+.user-form button{
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.25rem 1rem;
+  font-size: 1.5rem;
+  border-style: none;
+  background-color: slateblue;
+  border: none;
+  border-radius: 5px;
+}
+
+.user-form label{
+  width: 100%;
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 6%;
+}
+.user-form label input{
+  padding: 0.4rem;
+  margin-left: 1rem;
+  border-radius: 15px;
+  width: 85%;
+  border: none;
+}
+.user-form label p{
+  font-size: 1rem;
+  font-weight: 900;
+  color: rgb(255, 255, 255);
+}
+
+.users{
+  color: white;
+  border-radius: 20px;
+  background-color: DARKSLATEBLUE;
+  padding: 1%;
+  width: 20%;
+  list-style: none;
+  font-size: 1.5rem;
+}
+.users li{
+  margin-bottom: 6%;
 }
