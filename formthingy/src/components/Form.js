@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 
-const UserForm = ({values, errors}) => {
+const UserForm = ({values, errors, status}) => {
+
+    const [user, setUser] = useState([]);
+
+  // listens for status changes to update animals state
+  useEffect(() => {
+    status && setUser(user => [...user, status]);
+    //maybe we can send this shit somewhere?
+  }, [status]);
 
 
     return(
@@ -30,10 +38,19 @@ const UserForm = ({values, errors}) => {
             </Form>
             <pre>{JSON.stringify(values, null, 2)}</pre>
             <pre>{JSON.stringify(errors, null, 2)}</pre>
+
+            {user.map(user=>{
+                return (
+                    <ul key={user.id}>
+                        <li>Name: {user.name}</li>
+                        <li>Email: {user.email}</li>
+                        <li>Password: {user.password}</li>
+                    </ul>
+                )
+            })}
         </div>
     )
 }
-
 
 const FormikUserForm = withFormik({
     mapPropsToValues(props){
@@ -50,12 +67,12 @@ const FormikUserForm = withFormik({
         terms: yup.string().required(),
     }),
     handleSubmit(values, { setStatus, resetForm }) {
-        console.log("submitting", values);
+        console.log("submitting");
         axios
           .post("https://reqres.in/api/users/", values)
           .then(res => {
             console.log("success", res);
-            // sends a status update through props in AnimalForm with value as res.data content
+            // sends a status update through props in Form with value as res.data content
             setStatus(res.data);
             //clears form inputs, from FormikBag
             resetForm();
